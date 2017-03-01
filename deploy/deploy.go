@@ -103,6 +103,11 @@ func BuildGo(filePath string) {
 
 }
 
+func DockerRun() {
+	fmt.Println("本地测试运行go项目......")
+	execAndPrint("docker", "run", "-ti", "--rm", Url + "/" + Author + "/" + Name + ":v" + Version)
+}
+
 func CopyConfig() {
 	fmt.Println("正在复制配置文件到发布系统中......")
 	execAndPrint("pwd")
@@ -239,14 +244,16 @@ func Help() {
 	 ns [非必须] 切换项目namespace
 	 env [非必须] 切换项目env
 	 path [非必须] 项目相对路径
-	 namespace [飞必须] 指定发布项目的命名空间
+	 namespace [非必须] 指定发布项目的命名空间
 	 -----------------------------------------------------------
 	 常用命令示例
-	 发布测试项目: make name=iris-demo path=../iris-demo flow=build
-	 停止项目: make flow=delAll name=business-order,data-order env=dev
-	 发布项目dep: make flow=dep name=business-order,data-order env=dev
+	 完整发布测试项目: make name=iris-demo path=../iris-demo flow=all
+	 停止项目: make flow=delAll name=iris-demo,grpc-demo env=dev
+	 打包项目镜像: make flow=build name=iris-demo,grpc-demo env=dev
+	 推送镜像: make flow=push name=iris-demo,grpc-demo env=dev
 	 修改namespace: make ns=aura env=dev
 	 切换k8s环境:  make env=prod
+	 支持多项目一起发布, 多个name用,隔开 多个path也用,隔开
 	 -----------------------------------------------------------`
 
 	fmt.Println(helpInfo)

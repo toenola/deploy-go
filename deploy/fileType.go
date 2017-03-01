@@ -111,10 +111,12 @@ metadata:
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: "[name]"
 spec:
+  type: NodePort
   ports:
     - name: [name]
       port: [port]
       targetPort: [servicePort]
+      protocol: TCP
   selector:
     app: [name]
 `
@@ -134,6 +136,7 @@ spec:
     - name: [name]
       port: [servicePort]
       targetPort: [port]
+      protocol: TCP
       nodePort: [exportPort]
   selector:
     app: [name]

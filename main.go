@@ -118,6 +118,12 @@ func main() {
 			//编译代码生成docker镜像
 			BuildDockerImage()
 
+		case "test":
+			//读取配置文件
+			SetupConfig(sName, filePath)
+			//本地运行
+			DockerRun()
+
 		case "push":
 			//读取配置文件
 			SetupConfig(sName, filePath)
