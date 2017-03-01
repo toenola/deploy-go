@@ -29,12 +29,12 @@ func main() {
 
 	names := strings.Split(SystemName, ",")
 	paths := strings.Split(ProjectPath, ",")
-
-	if len(paths) != len(names) {
-		panic("项目名称和项目地址数量不一致请检查 name和conf参数")
-	}
 	for i, sName := range names {
-		filePath := paths[i]
+		filePath := "../" + sName
+		if paths[i] != "" {
+			filePath = paths[i]
+		}
+
 		if Flow == "" {
 			if Namespace != ""{
 				if Env == "" {

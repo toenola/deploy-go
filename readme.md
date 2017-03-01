@@ -1,3 +1,5 @@
+
+
 ### deploy-go 发布脚本使用指南
 
 #### 基本要求
@@ -18,9 +20,15 @@
 
 #### 如何让我的项目能够使用此脚本发布?
 
-1.如果项目启动需要指定配置文件, 需要将项目相关的配置放在项目根目录的config目录下,并且区分local,dev,prod等配置, 目前现有的go项目模板均是此格式.
+1.如果项目启动需要指定配置文件, 需要将项目相关的配置放在项目根目录的config目录下,并且区分local,dev,prod等配置, 目前现有的go项目模板均是此格式. 例如local.json 代表是项目启动的本地配置
 
-2.发布脚本需要生成一些发布相关的配置文件,需要获得一些项目镜像相关的信息, 因此你需要根据发布环境的区别将下列配置配置成deploy-dev.json, deploy-prod.json, deploy-vpc.json放置在你的项目根目录中的config目录下
+2.发布脚本需要生成一些发布相关的配置文件,需要获得一些项目镜像相关的信息, 因此你需要根据发布环境的区别将下列配置配置成deploy-dev.json, deploy-prod.json, deploy-vpc.json等发布配置文件放置在你的项目根目录中的config目录下
+
+config文件目录如下图所示:
+
+![config图片](http://doc.maizuo.com/api/file/getImage?fileId=58b66a5377c92c000d00000c)
+
+
 
 配置文件格式如下:
 
@@ -61,26 +69,6 @@
 
 接下来按照提示操作就可以了
 
-```
-             go项目发布脚本使用指南
-         ----------------------------------------------------------
-         可选参数如下:
-         flow [必须] 指定脚本执行流程 ing,svc,dep,build,push,all,delAll,delSvc,delIng,delDep
-         name [非必须] 需要操作的的项目名称, 多个,隔开
-         env [非必须,默认为dev] 指定发布环境 dev[测试环境], prod[正式环境], vpc[新正式环境]
-         ver [非必须,默认读取配置项目文件] 指定项目版本
-         exportPort [非必须,正式环境不生效] 项目导出端口
-         port [非必须] 项目运行提供服务的端口 grpc项目为50051, web项目为80
-         changeNS [非必须] 切换项目namespace
-         changeEnv [非必须] 切换项目env
-         -----------------------------------------------------------
-         常用命令示例
-         发布测试项目: make flow=all name=business-order,data-order env=dev
-         停止项目: make flow=delAll name=business-order,data-order env=dev
-         发布项目dep: make flow=dep name=business-order,data-order env=dev
-         修改namespace: make ns=aura
-         切换k8s环境:  make env=prod
-         -----------------------------------------------------------
 
-```
 
+![图片](http://doc.maizuo.com/api/file/getImage?fileId=58b66b1777c92c000d00000e)
