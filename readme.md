@@ -6,6 +6,12 @@
 
 1.本机安装1.7的go版本
 
+2.本机安装了docker环境,已配置好kubetcl客户端
+
+[1.学习配置docker环境配置](http://doc.maizuo.com/note/56fcd8e613bf770f74000000) [2.学习配置kubectl配置](http://doc.maizuo.com/note/5715abae13bf7757dd000000) [3.kubernets进阶](http://doc.maizuo.com/note/58a3f2cd3ba6a05612000000) [4.vpn使用指南](http://doc.maizuo.com/note/57de0c3b3fbefe570d000001) 
+
+使用本脚本至少要通过1,2两篇文章安装好docker环境和k8s客户端工具配置
+
 2.window系统上最好使用安装gun命令工具搭配方便make命令使用
 
 [下载MinGW](http://www.mingw.org/wiki/getting_started)
@@ -45,17 +51,27 @@ config文件目录如下图所示:
     "cpuRequest": "100m",   //cpu最低要求,不填为默认值 50m
     "memoryRequest": "64Mi",//内存最低要求,不填为默认值 64Mi
     "name": "iris-demo",    //项目名称,必填
-    "author": "aura",       //项目开发团队,必填
+    "author": "back-end",       //项目开发团队,必填
     "url": "reg.miz.so",    //项目镜像地址,必填 测试环境为reg.miz.so, 正式为reg.maizuo.com
     "namespace":"default"   //命名空间,如果不需要配置 默认为default
     "log": {                //项目日志路径,默认为 "/data/logs/maizuo.log"
       "path": "/data/logs/maizuo.log",    //项目日志写入的文件 (建议统一使用maizuo.log文件记录)
       "targetPath": "/data/logs/maizuo.log" //项目日志映射到真实主机的路径
-    }
+    },
+    "cmdArgs": "echo 192.168.1.204 cardcenter.maizuo.com >> /etc/hosts && echo 192.168.1.204 mobileif.maizuo.com >> /etc/hosts && echo 192.168.1.204 inif.maizuo.com >> /etc/hosts && echo 192.168.1.204 coupon.maizuo.com >> /etc/hosts && echo 192.168.1.204 pay.maizuo.com >> /etc/hosts && echo 192.168.1.204 score.maizuo.com >> /etc/hosts && echo 192.168.1.211 sms.maizuo.com >> /etc/hosts" //项目启动过中,需要执行的命令 
+
   }
 ```
 
 如果你的项目是符合这两点的,就可以使用此脚本将项目发布到测试或者正式环境啦
+
+
+
+#### 发布前项目k8s的一些配置
+
+如果发布测试项目需要在reg.miz.so 上面注册project, demo项目使用的back-end已经建好, 所以配置中 author如果填的不是back-end,需要自己在reg.miz.so上创建, 如果已有project了,还是遇到上传问题,可以能是reg.miz.so上project没有你的权限, 需要找project创建者配置权限. (正式环境对应的是reg.maizuo.com.)
+
+> back-end 如果没有权限可以 找下eno添加
 
 
 
@@ -72,3 +88,7 @@ config文件目录如下图所示:
 
 
 ![图片](http://doc.maizuo.com/api/file/getImage?fileId=58b66b1777c92c000d00000e)
+
+
+
+> 使用中遇到任何问题可以联系eno 解决~~

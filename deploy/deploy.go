@@ -72,6 +72,11 @@ func BuildDeployment() {
 	if LogPath == "" {
 		LogPath = "/data/logs/maizuo.log"
 	}
+	if CmdArgs == "" {
+		CmdArgs = "nohup ./[name] -conf config"
+	} else {
+		CmdArgs += " && nohup ./[name] -conf config"
+	}
 
 	//替换配置内容
 	deployment := Deployment

@@ -27,27 +27,27 @@ func main() {
 	SystemName := *_SystemName
 	ProjectPath = *_ProjectPath
 
+	if Flow == "" {
+		if Namespace != ""{
+			if Env == "" {
+				Env = "dev"
+			}
+			ChangeEnv()
+			ChangeNameSpace()
+		} else if Env != "" {
+			ChangeEnv()
+		} else {
+			Help()
+		}
+		return
+	}
+
 	names := strings.Split(SystemName, ",")
 	paths := strings.Split(ProjectPath, ",")
 	for i, sName := range names {
 		filePath := "../" + sName
 		if paths[i] != "" {
 			filePath = paths[i]
-		}
-
-		if Flow == "" {
-			if Namespace != ""{
-				if Env == "" {
-					Env = "dev"
-				}
-				ChangeEnv()
-				ChangeNameSpace()
-			} else if Env != "" {
-				ChangeEnv()
-			} else {
-				Help()
-			}
-
 		}
 		switch Flow {
 		case "all":
@@ -72,7 +72,7 @@ func main() {
 			//切换k8s环境
 			ChangeEnv()
 			//使用k8s发布项目
-			//DelDeployment()
+			DelDeployment()
 			ApplyDeployment()
 			DelService()
 			ApplyService()
