@@ -8,13 +8,17 @@
 
 2.本机安装了docker环境,已配置好kubetcl客户端
 
-[1.学习配置docker环境配置](http://doc.maizuo.com/note/56fcd8e613bf770f74000000) [2.学习配置kubectl配置](http://doc.maizuo.com/note/5715abae13bf7757dd000000) [3.kubernets进阶](http://doc.maizuo.com/note/58a3f2cd3ba6a05612000000) [4.vpn使用指南](http://doc.maizuo.com/note/57de0c3b3fbefe570d000001) 
+[1.学习配置docker环境配置](http://doc.maizuo.com/note/56fcd8e613bf770f74000000) 
+
+[2.学习配置kubectl配置](http://doc.maizuo.com/note/5715abae13bf7757dd000000) 
+
+[3.kubernets进阶](http://doc.maizuo.com/note/58a3f2cd3ba6a05612000000) 
+
+[4.vpn使用指南](http://doc.maizuo.com/note/57de0c3b3fbefe570d000001) 
 
 使用本脚本至少要通过1,2两篇文章安装好docker环境和k8s客户端工具配置
 
-2.window系统上最好使用安装gun命令工具搭配方便make命令使用
-
-[下载MinGW](http://www.mingw.org/wiki/getting_started)
+2.window系统上最好使用安装gun命令工具搭配方便make命令使用 [下载MinGW](http://www.mingw.org/wiki/getting_started)
 
 
 
@@ -26,9 +30,11 @@
 
 #### 如何让我的项目能够使用此脚本发布?
 
-1.如果项目启动需要指定配置文件, 需要将项目相关的配置放在项目根目录的config目录下,并且区分local,dev,prod等配置, 目前现有的go项目模板均是此格式. 例如local.json 代表是项目启动的本地配置
+1.项目启动需要指定配置文件, 需要将项目相关的配置放在项目根目录的config目录下,并且区分local,dev,prod等配置, 目前现有的go项目模板均是此格式. 例如local.json 代表是项目启动的本地配置
 
-2.发布脚本需要生成一些发布相关的配置文件,需要获得一些项目镜像相关的信息, 因此你需要根据发布环境的区别将下列配置配置成deploy-dev.json, deploy-prod.json, deploy-vpc.json等发布配置文件放置在你的项目根目录中的config目录下
+2.发布脚本需要生成一些发布相关的配置文件,需要获得一些项目镜像相关的信息,
+
+ 因此你需要根据发布环境的区别将下列配置配置成**deploy-dev.json, deploy-prod.json, deploy-vpc.json**等发布配置文件放置在你的**项目根目录中的config目录下**
 
 config文件目录如下图所示:
 
@@ -69,7 +75,7 @@ config文件目录如下图所示:
 
 #### 发布前项目k8s的一些配置
 
-如果发布测试项目需要在reg.miz.so 上面注册project, demo项目使用的back-end已经建好, 所以配置中 author如果填的不是back-end,需要自己在reg.miz.so上创建, 如果已有project了,还是遇到上传问题,可以能是reg.miz.so上project没有你的权限, 需要找project创建者配置权限. (正式环境对应的是reg.maizuo.com.)
+如果要发布想到到210测试环境, 需要在reg.miz.so 上面注册project, demo项目使用的back-end已经建好, 所以配置中author如果填写的不是back-end,需要自己在reg.miz.so上创建, 如果已有project了,还是遇到上传问题,可以能是reg.miz.so上project没有你的权限, 需要找project创建者配置权限. (正式环境对应的是reg.maizuo.com).
 
 > back-end 如果没有权限可以 找下eno添加
 
